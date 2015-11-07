@@ -2,17 +2,16 @@ module AlchemyNews
   
   require 'rubygems'
   require 'json'
-  require 'httparty'
+  
+  
   class Api
-    
-    
-    @@BASE_LIMIT=10
+    @@BASE_LIMIT=100
     @@BASE_URL="http://access.alchemyapi.com/calls/data/GetNews"
     @@BASE_START=Time.now - 2600*24
     @@BASE_END=Time.now
     @@BASE_SENTIMENT="neutral"
-    @@BASE_SENTIMENT_SCORE=.5
-    @@BASE_COLUMNS = "return=enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.docSentiment"
+    @@BASE_SENTIMENT_SCORE=0.5
+    @@BASE_COLUMNS = "enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.docSentiment"
  
     attr_accessor :api_key, :search_focus,  
       :search_term, :search_type, 
@@ -39,6 +38,10 @@ module AlchemyNews
     news_items = []
     @search_term = keyword
     content =  request(build_search_qs)
+    
+    return [] if content.nil?
+    return [] if content["status"]=="ERROR"
+    
     items = content["result"]["docs"]
     items.each do |item|
       
@@ -54,7 +57,8 @@ module AlchemyNews
     ni.id = news_data["id"]
     ni.title = news_data["source"]["enriched"]["url"]["title"]
     ni.url = news_data["source"]["enriched"]["url"]["url"]
-    
+    ni.sentiment_factor = news_data["source"]["enriched"]["url"]["docSentiment"]["score"]
+    ni.sentiment_type = news_data["source"]["enriched"]["url"]["docSentiment"]["type"]
     ni.timestamp = news_data["timestamp"]
     ni
   end
@@ -69,7 +73,7 @@ module AlchemyNews
     options["count"]=@@BASE_LIMIT
     options["q.enriched.url.docSentiment.type"]=@sentiment_type || @@BASE_SENTIMENT
     options["return"] = @@BASE_COLUMNS
-    options["q.enriched.url.cleanedTitle"] = @search_term
+    options["q.enriched.url.text"] = @search_term
     options
   
     #https://access.alchemyapi.com/calls/data/GetNews?apikey=YOUR_API_KEY_HERE&return=enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.publicationDate,enriched.url.enrichedTitle.entities,enriched.url.enrichedTitle.docSentiment,enriched.url.enrichedTitle.concepts,enriched.url.enrichedTitle.taxonomy&start=1446249600&end=1446937200&q.enriched.url.cleanedTitle=IBM&q.enriched.url.enrichedTitle.taxonomy.taxonomy_.label=technology%20and%20computing&count=25&outputMode=json
@@ -108,7 +112,7 @@ module AlchemyNews
   		#Insert the base URL
   		url = @@BASE_URL + inflate_options(options)
      	uri = URI.parse(url)
-  		request = Net::HTTP::Post.new(uri.request_uri)
+  		request = Net::HTTP::Get.new(uri.request_uri)
   		request['Accept-Encoding'] = 'identity'
   		res = Net::HTTP.start(uri.host, uri.port) do |http|
   			http.request(request)
