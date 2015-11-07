@@ -1,12 +1,15 @@
 source "http://rubygems.org"
+
+gemspec
+
+gem 'rake'
 # Add dependencies required to use your gem here.
 # Example:
 #   gem "activesupport", ">= 2.3.5"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
-gem 'hpricot'
-gem 'httparty'
+
 group :development do
   gem "webmock"
   gem 'test-unit'
