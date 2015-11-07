@@ -10,7 +10,9 @@ module AlchemyNews
     @@BASE_URL="http://access.alchemyapi.com/calls/data/GetNews"
     @@BASE_START=Time.now - 2600*24
     @@BASE_END=Time.now
-    @@BASE_COLUMNS = "enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.publicationDate,enriched.url.enrichedTitle.entities,enriched.url.enrichedTitle.docSentiment,enriched.url.enrichedTitle.concepts,enriched.url.enrichedTitle.taxonomy"
+    @@BASE_SENTIMENT="neutral"
+    @@BASE_SENTIMENT_SCORE=.5
+    @@BASE_COLUMNS = "return=enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.docSentiment"
  
     attr_accessor :api_key, :search_focus,  
       :search_term, :search_type, 
@@ -65,6 +67,7 @@ module AlchemyNews
     options["end"]= @@BASE_END.to_i#start_search_time.to_i
     options["return"] = @@BASE_COLUMNS
     options["count"]=@@BASE_LIMIT
+    options["q.enriched.url.docSentiment.type"]=@sentiment_type || @@BASE_SENTIMENT
     options["return"] = @@BASE_COLUMNS
     options["q.enriched.url.cleanedTitle"] = @search_term
     options
