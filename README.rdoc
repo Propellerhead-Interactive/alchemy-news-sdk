@@ -6,9 +6,9 @@ This is a Ruby SDK for the IBM Alchemy News API.  IT is fairly simple at the mom
 
     api = AlchemyNews::Api.new(key)
     search = api.search("Trudeau")
-		search.each do |news_item|
-			puts news_item.name
-		end
+    search.each do |news_item|
+      puts news_item.name
+    end
 
 == Contributing to alchemy-news-api
  
