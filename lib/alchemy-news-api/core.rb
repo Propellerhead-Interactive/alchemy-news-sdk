@@ -5,9 +5,10 @@ module AlchemyNews
   
   
   class Api
-    @@BASE_LIMIT=100
+    
+    @@BASE_LIMIT=25
     @@BASE_URL="http://access.alchemyapi.com/calls/data/GetNews"
-    @@BASE_START=Time.now - 2600*24
+    @@BASE_START=Time.now - 2600*24*7
     @@BASE_END=Time.now
     @@BASE_SENTIMENT="neutral"
     @@BASE_SENTIMENT_SCORE=0.5
@@ -36,13 +37,15 @@ module AlchemyNews
   
   def search(keyword)
     news_items = []
-    @search_term = keyword
+    @search_term = CGI::escape(keyword)
     content =  request(build_search_qs)
     
     return [] if content.nil?
     return [] if content["status"]=="ERROR"
     
+    return if !content["result"].has_key? "docs"
     items = content["result"]["docs"]
+    
     items.each do |item|
       
       news_items << create_news_from_data(item)
@@ -60,6 +63,19 @@ module AlchemyNews
     ni.sentiment_factor = news_data["source"]["enriched"]["url"]["docSentiment"]["score"]
     ni.sentiment_type = news_data["source"]["enriched"]["url"]["docSentiment"]["type"]
     ni.timestamp = news_data["timestamp"]
+    ni.concepts = []
+    if news_data["source"]["enriched"]["url"].has_key? "concepts"
+      puts news_data["source"]["enriched"]["url"]["concepts"]
+      news_data["source"]["enriched"]["url"]["concepts"].each do |concept|
+        c = Concept.new
+        c.type_hierarchy = concept["knowledgeGraph"]["typeHierarchy"]
+        c.relevance = concept["relevance"]
+        c.relevant_text = concept["text"]
+        ni.concepts << c
+      end
+    end    
+  
+    
     ni
   end
   
@@ -71,7 +87,7 @@ module AlchemyNews
     options["end"]= @@BASE_END.to_i#start_search_time.to_i
     options["return"] = @@BASE_COLUMNS
     options["count"]=@@BASE_LIMIT
-    options["q.enriched.url.docSentiment.type"]=@sentiment_type || @@BASE_SENTIMENT
+    options["q.enriched.url.docSentiment.type"]=@sentiment_type  unless @sentiment_type.nil?
     options["return"] = @@BASE_COLUMNS
     options["q.enriched.url.text"] = @search_term
     options
@@ -96,7 +112,7 @@ module AlchemyNews
     def inflate_options(options)
   		options['apikey'] = @api_key
   		options['outputMode'] = 'json'
-  		url = '?'
+  		url = ''
   		options.each { |h,v|
   			url += h + '=' + v.to_s + '&'
   		}
@@ -110,8 +126,9 @@ module AlchemyNews
         return  parse_body(out)
       end
   		#Insert the base URL
-  		url = @@BASE_URL + inflate_options(options)
+  		url = @@BASE_URL + "?" + inflate_options(options)
      	uri = URI.parse(url)
+      puts url
   		request = Net::HTTP::Get.new(uri.request_uri)
   		request['Accept-Encoding'] = 'identity'
   		res = Net::HTTP.start(uri.host, uri.port) do |http|
