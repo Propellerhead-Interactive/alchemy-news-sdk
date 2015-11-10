@@ -28,7 +28,7 @@ This library aims to support and is tested against the following Ruby implementa
 api = AlchemyNews::Client.new(key)
     search = api.search("Trudeau")
     search.each do |news_item|
-      puts news_item.name
+      puts news_item.title
     end
 ```
 ## To Do
