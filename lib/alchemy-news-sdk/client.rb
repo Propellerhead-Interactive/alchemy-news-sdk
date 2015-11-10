@@ -73,7 +73,6 @@ module AlchemyNews
     ni.timestamp = news_data["timestamp"]
     ni.concepts = []
     if news_data["source"]["enriched"]["url"].has_key? "concepts"
-      puts news_data["source"]["enriched"]["url"]["concepts"]
       news_data["source"]["enriched"]["url"]["concepts"].each do |concept|
         c = Concept.new
         c.type_hierarchy = concept["knowledgeGraph"]["typeHierarchy"]
@@ -81,6 +80,7 @@ module AlchemyNews
         c.relevant_text = concept["text"]
         ni.concepts << c
       end
+      
     end    
   
     

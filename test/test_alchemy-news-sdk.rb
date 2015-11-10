@@ -10,8 +10,8 @@ class TestAlchemyNewsSdk < Test::Unit::TestCase
     search = api.search("Trudeau")
     
     assert api.news.count==5
-    
     assert api.news.first.title.index("Canada")>0
+    assert api.news.first.concepts.count==8
   end
   
  
