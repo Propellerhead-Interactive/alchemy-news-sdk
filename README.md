@@ -1,29 +1,29 @@
-= alchemy-news-api
+# alchemy-news-api
 
 This is a Ruby SDK for the IBM Alchemy News API.  IT is fairly simple at the moment, as it is just in its infancy.
 
-== Supported Ruby Versions
+## Supported Ruby Versions
 This library aims to support and is [tested against][travis] the following Ruby
 implementations:
 
 * Ruby 2.x
 
-== Installation
-    gem 'alchemy-news-sdk', 
+## Installation
+```    
+		gem 'alchemy-news-sdk', 
        :git=>'https://github.com/propellerhead-interactive/alchemy-news-sdk'
+```
 
 
-
-== Use
-
-    ```
+## Use
+```
 		api = AlchemyNews::Api.new(key)
     search = api.search("Trudeau")
     search.each do |news_item|
       puts news_item.name
     end
 ```
-== Contributing to alchemy-news-api
+## Contributing to alchemy-news-api
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
