@@ -19,8 +19,7 @@ This library aims to support and is tested against the following Ruby implementa
 
 ###Rails
 ```    
-		gem 'alchemy-news-sdk', 
-       :git=>'https://github.com/propellerhead-interactive/alchemy-news-sdk'
+		gem 'alchemy-news-sdk'
 ```
 
 
