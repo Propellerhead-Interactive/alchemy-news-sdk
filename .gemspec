@@ -6,6 +6,6 @@ Gem::Specification.new do |s|
   s.description = "Alchemy News API SDK to access the APi"
   s.authors     = ["Propellerhead Interactive"]
   s.email       = 'matt@propellerhead.ca'
-  s.files       = ["lib/alchemy-news-api.rb"]
+  s.files       = ["lib/alchemy-news-sdk.rb"]
   s.homepage    = 'https://propellerhead.ca'
 end
