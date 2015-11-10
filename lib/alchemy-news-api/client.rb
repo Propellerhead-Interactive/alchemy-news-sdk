@@ -3,7 +3,7 @@ module AlchemyNews
   require 'rubygems'
   require 'json'
 
-  class Api
+  class Client
     
     @@BASE_LIMIT=25
     
