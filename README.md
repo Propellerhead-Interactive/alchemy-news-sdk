@@ -16,12 +16,13 @@ implementations:
 
 == Use
 
-    api = AlchemyNews::Api.new(key)
+    ```
+		api = AlchemyNews::Api.new(key)
     search = api.search("Trudeau")
     search.each do |news_item|
       puts news_item.name
     end
-
+```
 == Contributing to alchemy-news-api
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
