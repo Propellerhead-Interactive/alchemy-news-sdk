@@ -36,6 +36,12 @@ api = AlchemyNews::Client.new(key)
 * Better error handling
 * More options for search
 
+## Bugs
+
+* Please post bugs here (in the issues area of github)
+* Or Fix them and send me a pull request.  
+
+
 ## Contributing to alchemy-news-api
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
