@@ -10,6 +10,14 @@ This library aims to support and is tested against the following Ruby implementa
 * Ruby 2.x
 
 ## Installation
+
+###Ruby
+```    
+		gem  install 'alchemy-news-sdk', 
+```
+
+
+###Rails
 ```    
 		gem 'alchemy-news-sdk', 
        :git=>'https://github.com/propellerhead-interactive/alchemy-news-sdk'
