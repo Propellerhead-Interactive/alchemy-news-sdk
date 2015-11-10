@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'alchemy-news-api'
+  s.name        = 'alchemy-news-sdk'
   s.version     = '0.1.0'
   s.licenses    = ['MIT']
   s.summary     = "Alchemy News API SDK to access the APi"
