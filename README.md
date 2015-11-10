@@ -1,5 +1,7 @@
 # alchemy-news-api
 
+**BETA**
+
 This is a Ruby SDK for the IBM Alchemy News API.  IT is fairly simple at the moment, as it is just in its infancy.
 
 ## Supported Ruby Versions
@@ -33,7 +35,7 @@ api = AlchemyNews::Api.new(key)
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+### Copyright
 
 Copyright (c) 2015 Propellerhead Interactive. See LICENSE.txt for
 further details.
