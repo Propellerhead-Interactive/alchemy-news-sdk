@@ -17,7 +17,7 @@ implementations:
 
 ## Use
 ```
-		api = AlchemyNews::Api.new(key)
+api = AlchemyNews::Api.new(key)
     search = api.search("Trudeau")
     search.each do |news_item|
       puts news_item.name
