@@ -13,7 +13,7 @@ This library aims to support and is tested against the following Ruby implementa
 
 ### Ruby
 ```    
-		gem  install 'alchemy-news-sdk', 
+		gem  install 'alchemy-news-sdk'
 ```
 
 
