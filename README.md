@@ -11,13 +11,13 @@ This library aims to support and is tested against the following Ruby implementa
 
 ## Installation
 
-###Ruby
+### Ruby
 ```    
 		gem  install 'alchemy-news-sdk', 
 ```
 
 
-###Rails
+### Rails
 ```    
 		gem 'alchemy-news-sdk'
 ```
@@ -31,6 +31,11 @@ api = AlchemyNews::Client.new(key)
       puts news_item.name
     end
 ```
+## To Do
+
+* Better error handling
+* More options for search
+
 ## Contributing to alchemy-news-api
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
