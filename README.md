@@ -2,11 +2,10 @@
 
 **BETA**
 
-This is a Ruby SDK for the IBM Alchemy News API.  IT is fairly simple at the moment, as it is just in its infancy.
+This is a Ruby SDK for the IBM Alchemy News API.  It is fairly simple at the moment, as it is just in its infancy.
 
 ## Supported Ruby Versions
-This library aims to support and is [tested against][travis] the following Ruby
-implementations:
+This library aims to support and is tested against the following Ruby implementations:
 
 * Ruby 2.x
 
