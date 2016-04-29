@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "alchemy-news-api"
   gem.homepage = "http://github.com/mattkantor/alchemy-news-api"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{SDK for Watson AlchemyData News}
+  gem.description = %Q{SDK for Watson AlchemyData News}
   gem.email = "matthewkantor@gmail.com"
   gem.authors = ["mattkantor"]
   # dependencies defined in Gemfile

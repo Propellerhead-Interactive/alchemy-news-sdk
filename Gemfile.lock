@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    alchemy-news-sdk (0.1.0)
+    alchemy-news-sdk (0.1.2)
 
 GEM
   remote: http://rubygems.org/
