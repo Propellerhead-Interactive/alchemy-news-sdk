@@ -54,6 +54,5 @@ api = AlchemyNews::Client.new(key)
 
 ### Copyright
 
-Copyright (c) 2015 Propellerhead Interactive. See LICENSE.txt for
-further details.
+You saw it here first.
 
